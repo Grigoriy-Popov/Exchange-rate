@@ -31,8 +31,8 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public CurrencyStatus isCurrencyIncrease() {
-        double todayRate = getTodayRate();
-        double yesterdayRate = getYesterdayRate();
+        double todayRate = getTodayRate("RUB");
+        double yesterdayRate = getYesterdayRate("RUB");
         if (todayRate > yesterdayRate) {
             return CurrencyStatus.INCREASED;
         } else if (todayRate < yesterdayRate) {
@@ -41,8 +41,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         return CurrencyStatus.INCREASED;
     }
 
-    private double getTodayRate() {
-        String currencyCode = "RUB";
+    private double getTodayRate(String currencyCode) {
         URI url = URI.create("https://api.exchangerate.host/latest?base=USD&symbols=" + currencyCode);
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -67,9 +66,8 @@ public class CurrencyServiceImpl implements CurrencyService {
         return rate;
     }
 
-    private double getYesterdayRate() {
+    private double getYesterdayRate(String currencyCode) {
         LocalDate yesterday = LocalDate.now().minusDays(1);
-        String currencyCode = "RUB";
         URI url = URI.create("https://api.exchangerate.host/" + yesterday + "?base=USD&symbols=" + currencyCode);
 
         HttpRequest request = HttpRequest.newBuilder()
