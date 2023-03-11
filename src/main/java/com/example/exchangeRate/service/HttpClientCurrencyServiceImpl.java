@@ -14,22 +14,24 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
 
-@Service
+@Service("HttpClient")
 @Slf4j
-public class HttpClientCurrencyService {
+public class HttpClientCurrencyServiceImpl  {
     private final HttpClient client;
     private final ObjectMapper mapper;
     private final String baseCurrency;
     private final String baseCurrencyApiURL;
 
-    public HttpClientCurrencyService(ObjectMapper mapper, @Value("${app.base_currency}") String baseCurrency,
-                                     @Value("${app.base_currency_api_url}") String baseCurrencyApiURL) {
+    public HttpClientCurrencyServiceImpl(ObjectMapper mapper,
+                                         @Value("${app.base_currency}") String baseCurrency,
+                                         @Value("${app.base_currency_api_url}") String baseCurrencyApiURL) {
         client = HttpClient.newHttpClient();
         this.mapper = mapper;
         this.baseCurrency = baseCurrency;
         this.baseCurrencyApiURL = baseCurrencyApiURL;
     }
 
+//    @Override
     public void getGifByCurrencyCode(String currencyCode) {
         CurrencyStatus status = getCurrencyStatusByYesterday(currencyCode);
         switch (status) {

@@ -1,5 +1,7 @@
 package com.example.exchangeRate.service;
 
+import java.io.IOException;
+
 public interface CurrencyService {
-    void getGifByCurrencyCode(String currencyCode);
+    byte[] getGifByCurrencyCode(String currencyCode) throws IOException;
 }
