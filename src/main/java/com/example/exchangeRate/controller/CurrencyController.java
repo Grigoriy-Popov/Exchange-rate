@@ -1,6 +1,6 @@
-package com.example.alfatest.controller;
+package com.example.exchangeRate.controller;
 
-import com.example.alfatest.service.CurrencyService;
+import com.example.exchangeRate.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,6 @@ public class CurrencyController {
 
     @GetMapping
     public void getGifByCurrencyCode(@RequestParam String currencyCode) {
-//        currencyService.getGifByCurrencyCode("RUB");
-        currencyService.isCurrencyIncrease(currencyCode);
+        currencyService.getGifByCurrencyCode(currencyCode);
     }
 }

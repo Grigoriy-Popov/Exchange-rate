@@ -1,4 +1,4 @@
-package com.example.alfatest.model;
+package com.example.exchangeRate.model;
 
 import lombok.Data;
 

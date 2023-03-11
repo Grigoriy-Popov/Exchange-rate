@@ -1,4 +1,4 @@
-package com.example.alfatest;
+package com.example.exchangeRate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

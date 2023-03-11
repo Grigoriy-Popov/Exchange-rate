@@ -1,7 +1,7 @@
-package com.example.alfatest.model;
+package com.example.exchangeRate.model;
 
 public enum CurrencyStatus {
-    INCREASED,
+    GO_UP,
     GO_DOWN,
     NO_CHANGE
 }
