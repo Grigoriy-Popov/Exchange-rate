@@ -30,9 +30,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public CurrencyStatus isCurrencyIncrease() {
-        double todayRate = getTodayRate("RUB");
-        double yesterdayRate = getYesterdayRate("RUB");
+    public CurrencyStatus isCurrencyIncrease(String currencyCode) {
+        double todayRate = getTodayRate(currencyCode);
+        double yesterdayRate = getYesterdayRate(currencyCode);
         if (todayRate > yesterdayRate) {
             return CurrencyStatus.INCREASED;
         } else if (todayRate < yesterdayRate) {

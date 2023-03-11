@@ -5,5 +5,5 @@ import com.example.alfatest.model.CurrencyStatus;
 public interface CurrencyService {
     void getGifByCurrencyCode(String currencyCode);
 
-    CurrencyStatus isCurrencyIncrease();
+    CurrencyStatus isCurrencyIncrease(String currencyCode);
 }

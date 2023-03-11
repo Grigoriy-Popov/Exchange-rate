@@ -16,8 +16,8 @@ public class CurrencyController {
     private final CurrencyService currencyService;
 
     @GetMapping
-    public void getGifByCurrencyCode(String currencyCode) {
+    public void getGifByCurrencyCode(@RequestParam String currencyCode) {
 //        currencyService.getGifByCurrencyCode("RUB");
-        currencyService.isCurrencyIncrease();
+        currencyService.isCurrencyIncrease(currencyCode);
     }
 }
