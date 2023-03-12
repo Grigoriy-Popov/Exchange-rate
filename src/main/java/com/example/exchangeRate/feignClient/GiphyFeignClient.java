@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
 
-@FeignClient(name = "gif", url = "${app.base_gif_api_url}")
-public interface GifFeignClient {
+@FeignClient(name = "giphyClient", url = "${giphy.base_gif_api_url}")
+public interface GiphyFeignClient {
     @GetMapping("?api_key=${giphy.key}&tag={tag}&rating=g")
-    Map getGifByKeyword(@PathVariable("tag") String keyword);
+    Map getGifInformationByKeyword(@PathVariable("tag") String keyword);
 }

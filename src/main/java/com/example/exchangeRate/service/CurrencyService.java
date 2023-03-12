@@ -1,7 +1,12 @@
 package com.example.exchangeRate.service;
 
-import java.io.IOException;
+import com.example.exchangeRate.model.CurrencyStatus;
 
 public interface CurrencyService {
-    byte[] getGifByCurrencyCode(String currencyCode) throws IOException;
+
+    double getLatestRate(String currencyCode);
+
+    double getYesterdayRate(String currencyCode);
+
+    CurrencyStatus getCurrencyStatusByYesterday(String currencyCode);
 }

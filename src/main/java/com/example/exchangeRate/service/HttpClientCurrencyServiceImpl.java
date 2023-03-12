@@ -16,7 +16,7 @@ import java.time.LocalDate;
 
 @Service("HttpClient")
 @Slf4j
-public class HttpClientCurrencyServiceImpl  {
+public class HttpClientCurrencyServiceImpl implements CurrencyService {
     private final HttpClient client;
     private final ObjectMapper mapper;
     private final String baseCurrency;
@@ -31,23 +31,9 @@ public class HttpClientCurrencyServiceImpl  {
         this.baseCurrencyApiURL = baseCurrencyApiURL;
     }
 
-//    @Override
-    public void getGifByCurrencyCode(String currencyCode) {
-        CurrencyStatus status = getCurrencyStatusByYesterday(currencyCode);
-        switch (status) {
-            case GO_UP:
-                break;
-            case GO_DOWN:
-                break;
-            case NO_CHANGE:
-                break;
-            default:
-                throw new RuntimeException("Ошибка");
-        }
-    }
-
-    private CurrencyStatus getCurrencyStatusByYesterday(String currencyCode) {
-        double todayRate = getTodayRate(currencyCode);
+    @Override
+    public CurrencyStatus getCurrencyStatusByYesterday(String currencyCode) {
+        double todayRate = getLatestRate(currencyCode);
         double yesterdayRate = getYesterdayRate(currencyCode);
         if (todayRate > yesterdayRate) {
             System.out.println(CurrencyStatus.GO_UP);
@@ -60,12 +46,14 @@ public class HttpClientCurrencyServiceImpl  {
         return CurrencyStatus.NO_CHANGE;
     }
 
-    private double getTodayRate(String currencyCode) {
+    @Override
+    public double getLatestRate(String currencyCode) {
         URI url = URI.create(baseCurrencyApiURL + "/latest?base=" + baseCurrency + "&symbols=" + currencyCode);
         return sendRequestToGetRate(url, currencyCode);
     }
 
-    private double getYesterdayRate(String currencyCode) {
+    @Override
+    public double getYesterdayRate(String currencyCode) {
         var yesterday = LocalDate.now().minusDays(1);
         URI url = URI.create(String.format("%s/%s?base=%s&symbols=%s",
                 baseCurrencyApiURL, yesterday, baseCurrency, currencyCode));
