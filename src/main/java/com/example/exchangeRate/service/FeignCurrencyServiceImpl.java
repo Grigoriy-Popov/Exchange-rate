@@ -20,20 +20,20 @@ public class FeignCurrencyServiceImpl implements CurrencyService {
         double todayRate = getLatestRate(currencyCode);
         double yesterdayRate = getYesterdayRate(currencyCode);
         if (todayRate > yesterdayRate) {
-            log.info("today rate go up");
+            log.info("Today rate go up");
             return CurrencyStatus.GO_UP;
         } else if (todayRate < yesterdayRate) {
-            log.info("today rate go down");
+            log.info("Today rate go down");
             return CurrencyStatus.GO_DOWN;
         }
-        log.info("rate don't change");
+        log.info("Rate don't change");
         return CurrencyStatus.NO_CHANGE;
     }
 
     @Override
     public double getLatestRate(String currencyCode) {
         ExchangeRate exchangeRate = exchangeFeignClient.getTodayRate(currencyCode);
-        log.info("latest rate - {}", exchangeRate.getRates().get(currencyCode));
+        log.info("Latest rate - {}", exchangeRate.getRates().get(currencyCode));
         return exchangeRate.getRates().get(currencyCode);
     }
 
@@ -41,7 +41,7 @@ public class FeignCurrencyServiceImpl implements CurrencyService {
     public double getYesterdayRate(String currencyCode) {
         String yesterday = LocalDate.now().minusDays(1).toString();
         ExchangeRate exchangeRate = exchangeFeignClient.getYesterdayRate(yesterday, currencyCode);
-        log.info("yesterday rate - {}", exchangeRate.getRates().get(currencyCode));
+        log.info("Yesterday rate - {}", exchangeRate.getRates().get(currencyCode));
         return exchangeRate.getRates().get(currencyCode);
     }
 }

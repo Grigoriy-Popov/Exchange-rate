@@ -3,8 +3,8 @@ package com.example.exchangeRate.service;
 import com.example.exchangeRate.feignClient.ChoiceMarketFeignClient;
 import com.example.exchangeRate.feignClient.GiphyFeignClient;
 import com.example.exchangeRate.model.CurrencyStatus;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class GifServiceImpl implements GifService {
+
+    @Qualifier("FeignClient")
     private final CurrencyService currencyService;
     private final GiphyFeignClient gifFeignClient;
     private final ChoiceMarketFeignClient choiceMarketFeignClient;
-
-    @Autowired
-    public GifServiceImpl(@Qualifier("FeignClient") CurrencyService currencyService,
-                          GiphyFeignClient gifFeignClient,
-                          ChoiceMarketFeignClient choiceMarketFeignClient) {
-        this.currencyService = currencyService;
-        this.gifFeignClient = gifFeignClient;
-        this.choiceMarketFeignClient = choiceMarketFeignClient;
-    }
 
     @Override
     public byte[] getGifByCurrencyCode(String currencyCode) throws IOException {
