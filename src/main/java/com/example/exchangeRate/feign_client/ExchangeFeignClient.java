@@ -1,4 +1,4 @@
-package com.example.exchangeRate.feignClient;
+package com.example.exchangeRate.feign_client;
 
 import com.example.exchangeRate.model.ExchangeRate;
 import org.springframework.cloud.openfeign.FeignClient;

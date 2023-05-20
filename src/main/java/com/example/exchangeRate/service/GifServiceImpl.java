@@ -1,7 +1,7 @@
 package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.feignClient.ChoiceMarketFeignClient;
-import com.example.exchangeRate.feignClient.GiphyFeignClient;
+import com.example.exchangeRate.feign_client.ChoiceMarketFeignClient;
+import com.example.exchangeRate.feign_client.GiphyFeignClient;
 import com.example.exchangeRate.model.CurrencyStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

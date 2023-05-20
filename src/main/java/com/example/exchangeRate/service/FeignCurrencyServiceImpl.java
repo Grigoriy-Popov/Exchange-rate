@@ -1,6 +1,6 @@
 package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.feignClient.ExchangeFeignClient;
+import com.example.exchangeRate.feign_client.ExchangeFeignClient;
 import com.example.exchangeRate.model.CurrencyStatus;
 import com.example.exchangeRate.model.ExchangeRate;
 import lombok.RequiredArgsConstructor;
