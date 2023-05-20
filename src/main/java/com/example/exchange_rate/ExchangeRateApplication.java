@@ -1,4 +1,4 @@
-package com.example.exchangeRate;
+package com.example.exchange_rate;
 
 
 import org.springframework.boot.SpringApplication;

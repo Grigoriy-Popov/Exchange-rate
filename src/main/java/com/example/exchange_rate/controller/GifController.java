@@ -1,6 +1,6 @@
-package com.example.exchangeRate.controller;
+package com.example.exchange_rate.controller;
 
-import com.example.exchangeRate.service.GifService;
+import com.example.exchange_rate.service.GifService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

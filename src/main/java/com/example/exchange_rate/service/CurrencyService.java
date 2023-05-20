@@ -1,6 +1,6 @@
-package com.example.exchangeRate.service;
+package com.example.exchange_rate.service;
 
-import com.example.exchangeRate.model.CurrencyStatus;
+import com.example.exchange_rate.model.CurrencyStatus;
 
 public interface CurrencyService {
 

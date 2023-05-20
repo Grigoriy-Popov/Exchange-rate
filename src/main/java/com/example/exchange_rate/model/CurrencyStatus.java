@@ -1,4 +1,4 @@
-package com.example.exchangeRate.model;
+package com.example.exchange_rate.model;
 
 public enum CurrencyStatus {
     GO_UP,

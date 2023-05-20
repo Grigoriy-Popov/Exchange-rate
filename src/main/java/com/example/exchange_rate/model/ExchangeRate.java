@@ -1,4 +1,4 @@
-package com.example.exchangeRate.model;
+package com.example.exchange_rate.model;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
-package com.example.exchangeRate.service;
+package com.example.exchange_rate.service;
 
-import com.example.exchangeRate.model.CurrencyStatus;
-import com.example.exchangeRate.model.ExchangeRate;
+import com.example.exchange_rate.model.CurrencyStatus;
+import com.example.exchange_rate.model.ExchangeRate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

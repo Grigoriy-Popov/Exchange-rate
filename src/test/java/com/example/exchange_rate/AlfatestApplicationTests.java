@@ -1,4 +1,4 @@
-package com.example.exchangeRate;
+package com.example.exchange_rate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

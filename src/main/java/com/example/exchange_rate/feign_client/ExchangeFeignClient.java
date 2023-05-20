@@ -1,6 +1,6 @@
-package com.example.exchangeRate.feign_client;
+package com.example.exchange_rate.feign_client;
 
-import com.example.exchangeRate.model.ExchangeRate;
+import com.example.exchange_rate.model.ExchangeRate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

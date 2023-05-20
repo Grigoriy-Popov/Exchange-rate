@@ -1,8 +1,8 @@
-package com.example.exchangeRate.service;
+package com.example.exchange_rate.service;
 
-import com.example.exchangeRate.feign_client.ChoiceMarketFeignClient;
-import com.example.exchangeRate.feign_client.GiphyFeignClient;
-import com.example.exchangeRate.model.CurrencyStatus;
+import com.example.exchange_rate.feign_client.ChoiceMarketFeignClient;
+import com.example.exchange_rate.feign_client.GiphyFeignClient;
+import com.example.exchange_rate.model.CurrencyStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

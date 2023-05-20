@@ -1,8 +1,8 @@
-package com.example.exchangeRate.service;
+package com.example.exchange_rate.service;
 
-import com.example.exchangeRate.feign_client.ExchangeFeignClient;
-import com.example.exchangeRate.model.CurrencyStatus;
-import com.example.exchangeRate.model.ExchangeRate;
+import com.example.exchange_rate.feign_client.ExchangeFeignClient;
+import com.example.exchange_rate.model.CurrencyStatus;
+import com.example.exchange_rate.model.ExchangeRate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

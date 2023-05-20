@@ -1,4 +1,4 @@
-package com.example.exchangeRate.service;
+package com.example.exchange_rate.service;
 
 import java.io.IOException;
 
