@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -33,37 +34,37 @@ public class HttpClientCurrencyServiceImpl implements CurrencyService {
 
     @Override
     public CurrencyStatus getCurrencyStatusByYesterday(String currencyCode) {
-        double todayRate = getLatestRate(currencyCode);
-        double yesterdayRate = getYesterdayRate(currencyCode);
-        if (todayRate > yesterdayRate) {
-            System.out.println(CurrencyStatus.GO_UP);
+        BigDecimal todayRate = getLatestRate(currencyCode);
+        BigDecimal yesterdayRate = getYesterdayRate(currencyCode);
+        if (todayRate.compareTo(yesterdayRate) > 0) {
+            log.info("Today rate go up");
             return CurrencyStatus.GO_UP;
-        } else if (todayRate < yesterdayRate) {
-            System.out.println(CurrencyStatus.GO_DOWN);
+        } else if (todayRate.compareTo(yesterdayRate) < 0) {
+            log.info("Today rate go down");
             return CurrencyStatus.GO_DOWN;
         }
-        System.out.println(CurrencyStatus.NO_CHANGE);
+        log.info("Rate don't change");
         return CurrencyStatus.NO_CHANGE;
     }
 
     @Override
-    public double getLatestRate(String currencyCode) {
+    public BigDecimal getLatestRate(String currencyCode) {
         URI url = URI.create(baseCurrencyApiURL + "/latest?base=" + baseCurrency + "&symbols=" + currencyCode);
         return sendRequestToGetRate(url, currencyCode);
     }
 
     @Override
-    public double getYesterdayRate(String currencyCode) {
+    public BigDecimal getYesterdayRate(String currencyCode) {
         var yesterday = LocalDate.now().minusDays(1);
         URI url = URI.create(String.format("%s/%s?base=%s&symbols=%s",
                 baseCurrencyApiURL, yesterday, baseCurrency, currencyCode));
         return sendRequestToGetRate(url, currencyCode);
     }
 
-    private double sendRequestToGetRate(URI url, String currencyCode) {
+    private BigDecimal sendRequestToGetRate(URI url, String currencyCode) {
         HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
 
-        double rate = 0.0;
+        BigDecimal rate = new BigDecimal(0);
         try {
             final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {

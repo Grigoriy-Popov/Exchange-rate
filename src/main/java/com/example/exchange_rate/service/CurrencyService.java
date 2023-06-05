@@ -2,11 +2,13 @@ package com.example.exchange_rate.service;
 
 import com.example.exchange_rate.model.CurrencyStatus;
 
+import java.math.BigDecimal;
+
 public interface CurrencyService {
 
-    double getLatestRate(String currencyCode);
+    BigDecimal getLatestRate(String currencyCode);
 
-    double getYesterdayRate(String currencyCode);
+    BigDecimal getYesterdayRate(String currencyCode);
 
     CurrencyStatus getCurrencyStatusByYesterday(String currencyCode);
 }
