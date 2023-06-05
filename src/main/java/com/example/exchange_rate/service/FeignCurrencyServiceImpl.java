@@ -1,5 +1,6 @@
 package com.example.exchange_rate.service;
 
+import com.example.exchange_rate.exception.NotFoundException;
 import com.example.exchange_rate.feign_client.ExchangeFeignClient;
 import com.example.exchange_rate.model.CurrencyStatus;
 import com.example.exchange_rate.model.ExchangeRate;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
 
 @Service("FeignClient")
 @Slf4j
@@ -34,15 +36,25 @@ public class FeignCurrencyServiceImpl implements CurrencyService {
     @Override
     public BigDecimal getLatestRate(String currencyCode) {
         ExchangeRate exchangeRate = exchangeFeignClient.getTodayRate(currencyCode);
-        log.info("Latest rate - {}", exchangeRate.getRates().get(currencyCode));
-        return exchangeRate.getRates().get(currencyCode);
+        Map<String, BigDecimal> rates = exchangeRate.getRates();
+        if (!rates.containsKey(currencyCode)) {
+            throw new NotFoundException("Currency with code " + currencyCode + " not found");
+        }
+        BigDecimal latestRate = rates.get(currencyCode);
+        log.info("Latest rate - {}", latestRate);
+        return latestRate;
     }
 
     @Override
     public BigDecimal getYesterdayRate(String currencyCode) {
         String yesterday = LocalDate.now().minusDays(1).toString();
         ExchangeRate exchangeRate = exchangeFeignClient.getYesterdayRate(yesterday, currencyCode);
-        log.info("Yesterday rate - {}", exchangeRate.getRates().get(currencyCode));
-        return exchangeRate.getRates().get(currencyCode);
+        Map<String, BigDecimal> rates = exchangeRate.getRates();
+        if (!rates.containsKey(currencyCode)) {
+            throw new NotFoundException("Currency with code " + currencyCode + " not found");
+        }
+        BigDecimal yesterdayRate = rates.get(currencyCode);
+        log.info("Yesterday rate - {}", yesterdayRate);
+        return yesterdayRate;
     }
 }
