@@ -36,7 +36,7 @@ public class FeignCurrencyServiceImpl implements CurrencyService {
     @Override
     public BigDecimal getLatestRate(String currencyCode) {
         ExchangeRate exchangeRate = exchangeFeignClient.getTodayRate(currencyCode);
-        Map<String, BigDecimal> rates = exchangeRate.getRates();
+        Map<String, BigDecimal> rates = exchangeRate.rates();
         if (!rates.containsKey(currencyCode)) {
             throw new NotFoundException("Currency with code " + currencyCode + " not found");
         }
@@ -49,7 +49,7 @@ public class FeignCurrencyServiceImpl implements CurrencyService {
     public BigDecimal getYesterdayRate(String currencyCode) {
         String yesterday = LocalDate.now().minusDays(1).toString();
         ExchangeRate exchangeRate = exchangeFeignClient.getYesterdayRate(yesterday, currencyCode);
-        Map<String, BigDecimal> rates = exchangeRate.getRates();
+        Map<String, BigDecimal> rates = exchangeRate.rates();
         if (!rates.containsKey(currencyCode)) {
             throw new NotFoundException("Currency with code " + currencyCode + " not found");
         }

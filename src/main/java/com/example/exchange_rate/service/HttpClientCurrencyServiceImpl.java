@@ -69,7 +69,7 @@ public class HttpClientCurrencyServiceImpl implements CurrencyService {
             final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
                 ExchangeRate exchangeRate = mapper.readValue(response.body(), ExchangeRate.class);
-                rate = exchangeRate.getRates().get(currencyCode);
+                rate = exchangeRate.rates().get(currencyCode);
             } else {
                 log.debug("Что-то пошло не так. Сервер вернул код состояния: " + response.statusCode());
             }
